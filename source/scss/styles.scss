@@ -1,0 +1,477 @@
+/*
+This CSS file was written in SASS
+It was compiled with gulp using the folowing NPMs {
+  gulp-sass,
+  gulp-autoprefixer,
+  gulp-group-css-media-queries
+}
+*/
+
+// Variables
+$header-color: #d94e44;
+$content-red: #db4d3f;
+$content-gray: #f6f4f4;
+$font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
+$border-radius: 3px;
+
+// Mixins
+// Hover mixin for buttons
+@mixin hover-buttons($color) {
+  &:hover {
+    cursor: pointer;
+    color: darken($color, 15%);
+    border-color: darken($color, 15%);
+  }
+}
+
+// Hover mixin for inputs
+@mixin hover-inputs {
+  &:hover {
+    border: 1px solid #d6d4d4;
+  }
+}
+
+// Mixin to clear floating
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// emify mixin
+// Defaults
+$base_font_size: 16px;
+
+// Usage: em(16px);
+@function em(
+  $size,
+  $base_font_size: $base_font_size
+) {
+  @return #{$size / $base_font_size}em;
+}
+
+// Usage: @include emify(font-size, 16px);
+@mixin emify(
+	$property,
+	$size,
+	$base_font_size: $base_font_size
+) {
+  #{$property}: em($size, $base_font_size);
+}
+
+/* Styling */
+
+body {
+  min-width: 300px;
+  font-family: $font;
+  line-height: 1.5;
+}
+
+  /* Logo */
+  .logo-container {
+    width: 100%;
+    padding: 15px 0;
+    background-color: $header-color;
+  }
+
+    .logo {
+      color: #fff;
+      @include emify(font-size, 24px);
+      text-align: center;
+      font-weight: 600;
+    }
+
+      .fa-cutlery {
+        margin-right: 5px;
+      }
+
+  /* Header navigation - New recipe button and select a recipe dropdown */
+  .navigation {
+    width: 100%;
+    display: table;
+    border-bottom: 1px solid #d6d4d4;
+    @supports (display: flex) {
+      display: flex;
+      align-items: center;
+    }
+  }
+    /* Container of each navigation item (button/select/div/etc) */
+    .navigation-item__container {
+      width: 50%;
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
+      @supports (display: flex) {
+        display: flex;
+        flex-grow: 1;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+      /* New recipe button */
+      .navigation__new-recipe {
+        width: 100%;
+        padding: 20px 0;
+        @include emify(font-size, 20px);
+        font-weight: 600;
+        color: $header-color;
+        background-color: #fff;
+        border: 0;
+        border-right: 1px solid #d6d4d4;
+        outline: none;
+        transition: all 0.15s ease;
+        @supports (display: flex) {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        &:hover {
+          cursor: pointer;
+          color: darken($header-color, 15%);
+        }
+      }
+
+        .fa-plus {
+          padding: 5px;
+        }
+
+        .button__text {
+          @media screen and (max-width: 320px) {
+            display: none;
+          }
+        }
+      /* Select a recipe dropdown */
+      .navigation__select-recipe {
+        width: 100%;
+        @media screen and (min-width: 480px) {
+          width: auto;
+        }
+        padding: 10px 25px 10px 10px;
+        @include emify(font-size, 18px);
+        outline: none;
+        border-radius: $border-radius;
+        border: 1px solid #f9f5f5;
+        transition: all 0.15s ease;
+        @include hover-inputs;
+      }
+
+  /* Body of the page starts here */
+  /* The main section */
+  .content-container {
+    margin: 0 auto;
+    max-width: 1000px;
+    @media screen and (min-width: 500px) {
+      padding: 0 15px;
+    }
+    @media screen and (min-width: 700px) {
+      padding: 0 30px;
+    }
+  }
+    /* Section container */
+    .content__block {
+      margin-top: 21px;
+    }
+      /* Section header */
+      .content__header {
+        padding: 10px 15px;
+        background-color: $content-red;
+        line-height: 0;
+      }
+
+        .section-title {
+          color: #fff;
+          @include emify(font-size, 19px);
+          font-weight: 600;
+        }
+
+          .header__icon {
+            margin-right: 6px;
+          }
+      /* Section body */
+      .content__main {
+        background-color: $content-gray;
+        padding: 24px 0;
+        @media screen and (min-width: 350px) {
+          padding: 24px 15px;
+        }
+        @media screen and (min-width: 700px) {
+          padding: 24px 30px;
+        }
+      }
+        /* Form font-formating */
+        .form {
+          font-family: $font;
+          @include emify(font-size, 15px);
+        }
+          /* Form spacing */
+          .form-content {
+            margin-bottom: 24px;
+          }
+
+            .form__label {
+              display: block;
+              margin-bottom: 12px;
+              font-weight: 600;
+            }
+
+            .form-input {
+              padding: 10px;
+              border: 1px solid #fff;
+              outline: none;
+              box-sizing: border-box;
+              border-radius: $border-radius;
+              font-family: $font;
+              @include emify(font-size, 15px);
+              transition: all 0.15s ease;
+              @include hover-inputs;
+            }
+
+            #recipe-title {
+              width: 100%;
+            }
+            /* Make textarea resize only vertically */
+            .textarea {
+              width: 100%;
+              resize: vertical;
+            }
+          /* Container of About section - bottom selects */
+          .about__numbers-container {
+            width: 100%;
+            display: table;
+            @supports (display: flex) {
+              display: flex;
+              justify-content: space-between;
+            }
+          }
+            /* Container of each select item */
+            .about__numbers-item {
+              display: table-cell;
+              padding-right: 30px;
+              @supports (display: flex) {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-right: 30px;
+                padding-right: 0;
+              }
+              @media screen and (min-width: 430px) {
+                padding-right: 0;
+                text-align: center;
+                margin: 0;
+                flex-direction: row;
+                align-items: center;
+              }
+
+              &:first-of-type {
+                @media screen and (min-width: 430px) {
+                  text-align: left;
+                }
+              }
+              &:last-of-type {
+                @media screen and (min-width: 430px) {
+                  text-align: right;
+                }
+              }
+            }
+
+            .about__numbers-label {
+              display: inline-block;
+              font-weight: 600;
+              @media screen and (min-width: 430px) {
+                margin-right: 5px;
+              }
+            }
+
+            .form-input--select {
+              display: inline-block;
+              width: auto;
+              padding: 5px 25px 5px 5px;
+            }
+        /* Ingredients section list */
+        .ingredients-list {
+          list-style: none;
+          margin: 24px;
+
+          li {
+            background: url('../images/ul-style.png') left top 8px no-repeat;
+            @include emify(background-size, 10px);
+            padding-left: 18px;
+          }
+        }
+        /* Ingredients section form */
+        .ingredients__form {
+          width: 100%;
+          display: table;
+          @supports (display: flex) {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+        }
+          /* Container of each ingredients form element */
+          .ingredients__form__item {
+            display: table-cell;
+            padding-right: 10px;
+            &:last-of-type {
+              padding-right: 0;
+            }
+            @supports (display: flex) {
+              display: inherit;
+              padding-right: 0;
+              margin-right: 10px;
+              &:last-of-type {
+                margin-right: 0;
+              }
+              @media screen and (min-width: 780px) {
+                margin-right: 0;
+              }
+            }
+          }
+
+          .form-input--ingredients {
+            width: 100%;
+          }
+
+          .ingredients__form__qty-container {
+            min-width: 50px;
+            max-width: 80px;
+          }
+
+            .form-input__qty {
+              width: 100%;
+            }
+
+          .ingredients__form__unit-container {
+            min-width: 71px;
+            max-width: 120px;
+          }
+
+            .form-input__unit {
+              width: 100%;
+            }
+          /* Container of <span>of</span> element */
+          .ingredients__form__span-container {
+            display: none;
+            text-align: center;
+            @media screen and (min-width: 430px) {
+              display: table-cell;
+              @supports (display: plex) {
+                display: inherit;
+                margin-right: 10px;
+              }
+            }
+          }
+
+            .ingredients__form__span {
+              width: 100%;
+            }
+
+          .ingredients__form__ingredient-container {
+            @supports (display: flex) {
+              width: 100%;
+            }
+            min-width: 90px;
+            max-width: 350px;
+          }
+
+            .form-input__ingredient {
+              width: 100%;
+            }
+            /* Ingredients form add button */
+            .form-input__add {
+              @supports (display: flex) {
+                justify-content: space-around;
+                align-items: center;
+              }
+              border: 1px solid $content-red;
+              color: $content-red;
+              background-color: #fff;
+              outline: none;
+              transition: all 0.15s ease;
+              @include hover-buttons($content-red);
+            }
+
+            .fa-plus-square {
+              color: inherit;
+            }
+        /* Steps section list */
+        .steps-list {
+          margin: 20px 0 20px 20px;
+        }
+
+          .steps-list__item {
+            margin-bottom: 15px;
+          }
+        /* Add step button */
+        #add-step {
+          width: 100%;
+          color: $content-red;
+          @include emify(font-size, 20px);
+          font-weight: 600;
+          line-height: 0;
+          justify-content: center;
+          @include hover-buttons($content-red);
+        }
+
+          #add-step__icon {
+            margin-right: 5px;
+            @include emify(font-size, 18px);
+          }
+    /* Footer section of main - Cancel / Save recipe buttons */
+    .main__footer {
+      @include clearfix;
+      margin: 21px 0;
+      width: 100%;
+      @supports (display: flex) {
+        display: flex;
+        flex-grow: 1;
+      }
+    }
+      /* Container of each button */
+      .footer-button__container {
+        width: 50%;
+        float: left;
+        @supports (display: flex) {
+          width: 100%;
+          float: none;
+        }
+      }
+
+        .footer-button {
+          width: 100%;
+          padding: 10px 0;
+          @include emify(font-size, 20px);
+          font-weight: 600;
+          line-height: 0;
+          text-align: center;
+          border-radius: $border-radius;
+          outline: none;
+          transition: all 0.15s ease;
+        }
+
+        .footer-button--cancel {
+          background-color: #fff;
+          color: $content-red;
+          border: 1px solid $content-red;
+          @include hover-buttons($content-red);
+        }
+
+          .fa-trash-o {
+            margin-right: 5px;
+          }
+
+        .footer-button--save-recipe {
+          background-color: $content-red;
+          color: #fff;
+          border: 1px solid $content-red;
+          &:hover {
+            cursor: pointer;
+            background-color: darken($content-red, 15%);
+          }
+        }
+
+        .fa-floppy-o {
+          margin-right: 5px;
+        }
