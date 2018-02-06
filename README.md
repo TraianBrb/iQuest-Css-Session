@@ -63,6 +63,8 @@ float: left;
 
 * Textarea elements are resizable only vertically.
 
+* **I also created a second version with different spacings - especially for mobile. You can check it [here](http://iquestcookbook.surge.sh/)**
+
 
 ## Built With
 
