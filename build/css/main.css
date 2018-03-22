@@ -432,10 +432,17 @@ body {
   margin: 24px;
 }
 
-.ingredients-list li {
-  background: url("../images/ul-style.png") left top 8px no-repeat;
+li.ingredients-list__item {
   background-size: 0.625em;
   padding-left: 18px;
+  line-height: 1.5;
+}
+
+li.ingredients-list__item:before {
+  font-family: FontAwesome;
+  color: #db4d3f;
+  content: "\f101";
+  padding-right: 8px;
 }
 
 /* Ingredients section form */

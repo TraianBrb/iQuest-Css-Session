@@ -293,13 +293,19 @@ body {
         .ingredients-list {
           list-style: none;
           margin: 24px;
+        }
 
-          li {
-            background: url('../images/ul-style.png') left top 8px no-repeat;
+          li.ingredients-list__item {
             @include emify(background-size, 10px);
             padding-left: 18px;
+            line-height: 1.5;
+            &:before {
+              font-family: FontAwesome;
+              color: $content-red;
+              content: "\f101";
+              padding-right: 8px;
+            }
           }
-        }
         /* Ingredients section form */
         .ingredients__form {
           width: 100%;
